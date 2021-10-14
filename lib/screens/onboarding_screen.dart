@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../all_list_items.dart';
+import '../views/all_list_items.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   @override

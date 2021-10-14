@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'email_verification.dart';
-
-class ForgotPassword extends StatelessWidget {
+class ResetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +27,7 @@ class ForgotPassword extends StatelessWidget {
                         child: Icon(Icons.arrow_back, color: Colors.white))),
                 SizedBox(width: 100),
                 Text(
-                  'Forgot Password',
+                  'Reset Password',
                   style:
                       GoogleFonts.openSans(fontSize: 20.0, color: mWhiteColor),
                 ),
@@ -43,7 +41,7 @@ class ForgotPassword extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Mail Address Here',
+                    'Enter New Password',
                     style: GoogleFonts.roboto(
                       fontSize: 20.0,
                       color: mDoctorTextColor,
@@ -52,7 +50,7 @@ class ForgotPassword extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    'Enter the mail address associated\nwith your account',
+                    'Your new password must be different\nfrom previously used Password',
                     style: GoogleFonts.roboto(
                       fontSize: 16.0,
                       fontWeight: FontWeight.w400,
@@ -60,16 +58,21 @@ class ForgotPassword extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 25.0),
-                  InputField(icon: Icons.email, hintText: 'mscsapan@gmail.com'),
+                  InputField(
+                      icon: Icons.email,
+                      hintText: 'New Password',
+                      suffix: Icons.visibility_off),
+                  SizedBox(height: 10.0),
+                  InputField(
+                      icon: Icons.email,
+                      hintText: 'Confirm Password',
+                      suffix: Icons.visibility_off),
                   SizedBox(height: 15.0),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.90,
                     height: 45.0,
-                    child: nextButton(
-                        onTap: () => goToNext(
-                            context: context,
-                            screen: EmailVerificationScreen()),
-                        title: 'Reset Password'),
+                    child:
+                        nextButton(onTap: () {}, title: 'Verify and Proceed'),
                   ),
                 ],
               ),

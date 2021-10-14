@@ -9,3 +9,5 @@ final List<String> descriptions = [
   'Easily connect with doctor and start\nvideo chat for your better treatment &\nprescription.',
   'Book an appointment with doctor.Chat\nwith doctor via appointment letter &\n get consultant.',
 ];
+
+final List<String> code = ['7', '4', '9', '2'];

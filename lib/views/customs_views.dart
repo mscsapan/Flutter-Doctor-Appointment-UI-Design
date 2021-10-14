@@ -1,5 +1,6 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 doctorTextStyle() => TextStyle(
     color: mDoctorTextColor,
@@ -27,16 +28,21 @@ Widget nextButton({required Function() onTap, required String title}) {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))),
     onPressed: onTap,
-    child: Text(title),
+    child: Text(
+      title,
+      style: GoogleFonts.roboto(
+        fontSize: 18.0,
+        color: mWhiteColor,
+        fontWeight: FontWeight.w500,
+      ),
+    ),
   );
 }
 
-Widget skipButton() {
-  return TextButton(
-    onPressed: () {},
-    child: Text('Skip for Now'),
-  );
-}
+Widget skipButton() => TextButton(
+      onPressed: () {},
+      child: Text('Skip for Now'),
+    );
 
 goToNext({required BuildContext context, required Widget screen}) =>
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => screen));
