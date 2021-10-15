@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'home_screen.dart';
+
 class ResetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -71,8 +73,11 @@ class ResetPassword extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.90,
                     height: 45.0,
-                    child:
-                        nextButton(onTap: () {}, title: 'Verify and Proceed'),
+                    child: nextButton(
+                        onTap: () {
+                          print('clicked...');
+                        },
+                        title: 'Verify and Proceed'),
                   ),
                 ],
               ),
