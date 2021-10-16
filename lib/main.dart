@@ -1,8 +1,7 @@
-import 'package:doctor_appointment_design/screens/email_verification.dart';
-import 'package:doctor_appointment_design/screens/forgot_password_screen.dart';
 import 'package:doctor_appointment_design/screens/home_screen.dart';
-import 'package:doctor_appointment_design/screens/reset_password_screen.dart';
+import 'package:doctor_appointment_design/screens/search_doctors_screen.dart';
 import 'package:doctor_appointment_design/screens/sign_in_screen.dart';
+import 'package:doctor_appointment_design/screens/top_doctors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SwipePageController())
       ],
       child: MaterialApp(
-        home: HomeScreen(),
+        home: SearchDoctorScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );

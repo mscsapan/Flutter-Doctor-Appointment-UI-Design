@@ -1,3 +1,4 @@
+import 'package:doctor_appointment_design/app_colors/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../all_list_items.dart';
@@ -8,7 +9,7 @@ class CategoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90.0,
+      height: 110.0,
       width: double.infinity,
       child: ListView.builder(
         itemCount: categoryImage.length,
@@ -16,18 +17,23 @@ class CategoryView extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         itemBuilder: (context, index) {
           return Container(
-            height: 80.0,
-            width: 90.0,
+            height: 110.0,
+            width: 100.0,
             margin: EdgeInsets.symmetric(horizontal: 5.0),
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: mWhiteColor,
               borderRadius: BorderRadius.circular(8.0),
             ),
             child: Stack(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(categoryImage[index], fit: BoxFit.cover),
+                  child: Image.network(
+                    categoryImage[index],
+                    fit: BoxFit.cover,
+                    height: 110,
+                    width: 100,
+                  ),
                 ),
                 Positioned(
                   child: Align(

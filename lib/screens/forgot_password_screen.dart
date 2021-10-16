@@ -26,8 +26,9 @@ class ForgotPassword extends StatelessWidget {
                     child: GestureDetector(
                         onTap: () =>
                             goToNext(context: context, screen: SignInScreen()),
-                        child: Icon(Icons.arrow_back, color: Colors.white))),
-                SizedBox(width: 100),
+                        child: SvgPicture.asset('assets/left_arrow.svg',
+                            color: mWhiteColor))),
+                SizedBox(width: 70),
                 Text(
                   'Forgot Password',
                   style:
