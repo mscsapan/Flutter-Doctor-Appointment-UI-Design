@@ -16,64 +16,70 @@ class SearchDoctorScreen extends StatelessWidget {
         height: height,
         width: width,
         color: mLightGrey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20.0),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 15.0),
-              decoration: BoxDecoration(
-                  color: mWhiteColor,
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(color: Colors.grey, width: 1.2),
-                  boxShadow: [
-                    BoxShadow(
-                        blurRadius: 0.6,
-                        color: Colors.grey[400]!,
-                        offset: Offset(0, 3))
-                  ]),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.search, color: Colors.grey),
-                        hintText: 'Search Doctor',
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 20.0),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15.0),
+                decoration: BoxDecoration(
+                    color: mWhiteColor,
+                    borderRadius: BorderRadius.circular(15.0),
+                    border: Border.all(color: Colors.grey, width: 1.2),
+                    boxShadow: [
+                      BoxShadow(
+                          blurRadius: 0.6,
+                          color: Colors.grey[400]!,
+                          offset: Offset(0, 3))
+                    ]),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          prefixIcon: Icon(Icons.search, color: Colors.grey),
+                          hintText: 'Search Doctor',
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: FaIcon(FontAwesomeIcons.timesCircle,
+                          color: Colors.grey, size: 20.0),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 30.0),
+              Text(
+                'Suggestion',
+                style: GoogleFonts.openSans(
+                    fontSize: 20.0, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(height: 10.0),
+              Column(
+                children: List.generate(
+                  names.length,
+                  (index) => ExpansionTile(
+                    title: Text(names[index]),
+                    children: List.generate(
+                      names.length,
+                      (index) => SingleChildScrollView(
+                        child: Text(
+                          designations[index],
+                        ),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: FaIcon(FontAwesomeIcons.timesCircle,
-                        color: Colors.grey, size: 20.0),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 30.0),
-            Text(
-              'Suggestion',
-              style: GoogleFonts.openSans(
-                  fontSize: 20.0, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(height: 10.0),
-            Column(
-                children: List.generate(
-              names.length,
-              (index) => Theme(
-                data: Theme.of(context)
-                    .copyWith(dividerColor: Colors.transparent),
-                child: SingleChildScrollView(
-                  child: ExpansionTile(
-                    title: Text(names[index]),
-                  ),
                 ),
-              ),
-            ))
-          ],
+              )
+            ],
+          ),
         ),
       ),
+      //bottomNavigationBar: BottomNavBar(),
     );
   }
 }

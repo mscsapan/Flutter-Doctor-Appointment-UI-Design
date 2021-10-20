@@ -1,4 +1,5 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
+import 'package:doctor_appointment_design/views/bottom_nav_bar.dart';
 import 'package:doctor_appointment_design/views/listview/app_bar.dart';
 import 'package:doctor_appointment_design/views/listview/category_view.dart';
 import 'package:doctor_appointment_design/views/listview/heading_view.dart';
@@ -113,37 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.green,
-        fixedColor: Colors.red,
-        items: [
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.home,
-              ),
-              label: 'Home'),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.home,
-              ),
-              label: 'Home'),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.search,
-              ),
-              label: 'Home'),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.addressBook,
-              ),
-              label: 'Home'),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.personBooth,
-              ),
-              label: 'Home'),
-        ],
-      ),
+      //bottomNavigationBar: BottomNavBar(),
     );
   }
 }

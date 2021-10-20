@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 final List<String> images = ['assets/1.svg', 'assets/2.svg', 'assets/5.svg'];
 final List<String> titles = [
   'Thousand of Doctors',
@@ -25,4 +28,24 @@ final List<String> categoryName = [
   'Neurology',
   'Hematology',
   'Dentist',
+];
+
+final List<IconData> icons = [
+  FontAwesomeIcons.user,
+  FontAwesomeIcons.bell,
+  FontAwesomeIcons.heart,
+  FontAwesomeIcons.creditCard,
+  FontAwesomeIcons.users,
+];
+final List<String> title = [
+  'Profile Setting',
+  'Notification',
+  'Favourite',
+  'Payment',
+  'Refer Friend',
+];
+final List<String> lastMessage = [
+  'Terms & Condition',
+  'About Us',
+  'Logout',
 ];

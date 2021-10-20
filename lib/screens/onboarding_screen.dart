@@ -9,12 +9,13 @@ import 'package:provider/provider.dart';
 import '../views/all_list_items.dart';
 
 class OnBoardingScreen extends StatelessWidget {
+  int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     SwipePageController swipe =
         Provider.of<SwipePageController>(context, listen: true);
-    int currentIndex = 0; //swipe.position;
     return Scaffold(
       body: Center(
         child: Column(

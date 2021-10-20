@@ -1,10 +1,8 @@
-import 'package:doctor_appointment_design/screens/home_screen.dart';
-import 'package:doctor_appointment_design/screens/search_doctors_screen.dart';
-import 'package:doctor_appointment_design/screens/sign_in_screen.dart';
-import 'package:doctor_appointment_design/screens/top_doctors.dart';
+import 'package:doctor_appointment_design/views/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'controller/nav_controller.dart';
 import 'controller/swipe_controller.dart';
 
 void main() => runApp(MyApp());
@@ -14,10 +12,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => SwipePageController())
+        ChangeNotifierProvider(create: (context) => SwipePageController()),
+        ChangeNotifierProvider(create: (context) => NavigationController())
       ],
       child: MaterialApp(
-        home: SearchDoctorScreen(),
+        home: BottomNavBar(),
         debugShowCheckedModeBanner: false,
       ),
     );
