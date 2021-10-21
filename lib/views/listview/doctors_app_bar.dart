@@ -5,7 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-PreferredSizeWidget doctorsAppBar(String title) => AppBar(
+PreferredSizeWidget doctorsAppBar(String title, {bool widget = false}) =>
+    AppBar(
       elevation: 0.0,
       shadowColor: Colors.transparent,
       backgroundColor: mDoctorTextColor,
@@ -21,29 +22,38 @@ PreferredSizeWidget doctorsAppBar(String title) => AppBar(
           Text(title,
               style: GoogleFonts.openSans(
                   fontSize: 18.0, fontWeight: FontWeight.w600)),
-          Stack(
-            clipBehavior: Clip.hardEdge,
-            children: [
-              FaIcon(FontAwesomeIcons.bell),
-              Positioned(
-                top: 2.0,
-                right: -1,
-                child: Container(
-                  height: 10.0,
-                  width: 10.0,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
+          widget == false
+              ? Stack(
+                  clipBehavior: Clip.hardEdge,
+                  children: [
+                    FaIcon(FontAwesomeIcons.bell),
+                    Positioned(
+                      top: 2.0,
+                      right: -1,
+                      child: Container(
+                        height: 10.0,
+                        width: 10.0,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Text(
+                          '1',
+                          style: TextStyle(fontSize: 10.0),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
+              : GestureDetector(
+                  onTap: () => print('Reset All Pressed'),
                   child: Text(
-                    '1',
-                    style: TextStyle(fontSize: 10.0),
-                    textAlign: TextAlign.center,
+                    'Reset All',
+                    style: GoogleFonts.openSans(
+                        fontSize: 18.0, fontWeight: FontWeight.w600),
                   ),
                 ),
-              ),
-            ],
-          ),
         ],
       ),
     );

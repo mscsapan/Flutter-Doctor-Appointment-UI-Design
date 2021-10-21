@@ -24,6 +24,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
     ProfileScreen(),
   ];
 
+  final List<IconData> icons = [
+    FontAwesomeIcons.home,
+    FontAwesomeIcons.stethoscope,
+    FontAwesomeIcons.search,
+    FontAwesomeIcons.clipboardList,
+    FontAwesomeIcons.userCircle,
+  ];
+
+  final List<String> labels = [
+    'Home',
+    'Doctors',
+    'Search',
+    'Appointment',
+    'Profile',
+  ];
+
   @override
   Widget build(BuildContext context) {
     NavigationController navControl =
@@ -31,39 +47,20 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return Scaffold(
       body: screens[currentScreen],
       bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(canvasColor: Colors.orange),
+        data: Theme.of(context).copyWith(canvasColor: Colors.white),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           onTap: (index) => setState(() => currentScreen = index),
           //backgroundColor: Colors.green,
           selectedItemColor: Color(0xFF555FD2),
           elevation: 5,
-          items: [
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.home,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.stethoscope,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.search,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.clipboard,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: FaIcon(
-                  FontAwesomeIcons.userCircle,
-                ),
-                label: ''),
-          ],
+          currentIndex: currentScreen,
+          items: List.generate(
+              icons.length,
+              (index) => BottomNavigationBarItem(
+                  icon: FaIcon(icons[index]), label: labels[index])),
         ),
       ),
     );

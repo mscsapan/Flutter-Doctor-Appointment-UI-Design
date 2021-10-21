@@ -5,3 +5,4 @@ const mWhiteColor = Color(0xFFFFFFFF);
 const mDoctorTextColor = Color(0xFF555FD2);
 const mLightGrey = Color(0xFFE6EFF9);
 const mIconColor = Color(0xFFEFA315);
+const mCheckIconColor = Color(0xFF8C8FA5);

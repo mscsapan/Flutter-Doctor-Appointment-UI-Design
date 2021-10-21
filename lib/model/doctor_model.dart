@@ -21,6 +21,16 @@ final List<Doctor> doctor = [
       charge: charges,
       star: stars)
 ];
+final List<String> colleges = [
+  'Dhaka Medical College',
+  'Rajshahi Medical College',
+  'Salimullah Medical College',
+  'Suhrawardy Medical College',
+  'Sylhet Medical College',
+  'Kushtia Medical College',
+  'Mugda Medical College',
+  'Zia Medical College',
+];
 
 final List<String> names = [
   'Dr. Jenny Young',

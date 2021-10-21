@@ -11,7 +11,8 @@ doctorTextStyle() => TextStyle(
 //dot Container
 
 Widget buildDot({required int index, required int current}) {
-  return Container(
+  return AnimatedContainer(
+    duration: Duration(milliseconds: 600),
     height: index == current ? 12 : 10.0,
     width: index == current ? 12 : 10.0,
     margin: EdgeInsets.only(right: 5.0),

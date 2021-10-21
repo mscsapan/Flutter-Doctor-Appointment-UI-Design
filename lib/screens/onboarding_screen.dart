@@ -8,8 +8,14 @@ import 'package:provider/provider.dart';
 
 import '../views/all_list_items.dart';
 
-class OnBoardingScreen extends StatelessWidget {
+class OnBoardingScreen extends StatefulWidget {
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   int currentIndex = 0;
+  PageController controller = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,29 +32,29 @@ class OnBoardingScreen extends StatelessWidget {
               height: 360.0,
               width: double.infinity,
               child: PageView(
-                onPageChanged: (int index) {
-                  currentIndex = index;
-                },
+                controller: controller,
+                onPageChanged: (int index) =>
+                    setState(() => currentIndex = index),
                 children: List.generate(
                   images.length,
                   (index) => CustomPageView(
-                    title: titles[index],
-                    description: descriptions[index],
-                    image: images[index],
-                  ),
+                      title: titles[index],
+                      description: descriptions[index],
+                      image: images[index]),
                 ),
               ),
             ),
             SizedBox(height: 50.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                  3, (index) => buildDot(index: currentIndex, current: index)),
+              children: List.generate(images.length,
+                  (index) => buildDot(index: currentIndex, current: index)),
             ),
             SizedBox(height: 60.0),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.65,
-              child: nextButton(onTap: () => swipe.swipePage(), title: 'Next'),
+              child: nextButton(
+                  onTap: () => controller.jumpToPage(3), title: 'Next'),
             ),
             InkWell(
                 onTap: () => goToNext(context: context, screen: SignInScreen()),

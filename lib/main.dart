@@ -1,4 +1,5 @@
-import 'package:doctor_appointment_design/views/bottom_nav_bar.dart';
+import 'package:doctor_appointment_design/screens/doctor_details_screen.dart';
+import 'package:doctor_appointment_design/screens/top_doctors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => NavigationController())
       ],
       child: MaterialApp(
-        home: BottomNavBar(),
+        home: TopDoctorsScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );

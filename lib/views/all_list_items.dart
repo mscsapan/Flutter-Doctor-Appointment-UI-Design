@@ -49,3 +49,10 @@ final List<String> lastMessage = [
   'About Us',
   'Logout',
 ];
+
+final List<String> consultType = [
+  'All Type',
+  'Message',
+  'Voice Call',
+  'Video Call',
+];

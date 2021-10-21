@@ -57,14 +57,16 @@ class AppointmentScreen extends StatelessWidget {
                 child: Column(
                   children: List.generate(
                     names.length,
-                    (index) => TodayAppointment(
-                        image: docImages[index],
-                        name: names[index],
-                        connection:
-                            index % 2 == 0 ? 'Voice Call' : 'Video Call',
-                        time: index % 2 == 0
-                            ? '11.30am - 12.30pm'
-                            : '10.00am - 11.00am'),
+                    (index) => index >= 2
+                        ? TodayAppointment(
+                            image: docImages[index],
+                            name: names[index],
+                            connection:
+                                index % 2 == 0 ? 'Voice Call' : 'Video Call',
+                            time: index % 2 == 0
+                                ? '11.30am - 12.30pm'
+                                : '10.00am - 11.00am')
+                        : SizedBox(),
                   ),
                 ),
               )
