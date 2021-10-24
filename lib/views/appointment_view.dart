@@ -7,10 +7,12 @@ class TodayAppointment extends StatelessWidget {
   final String name;
   final String connection;
   final String time;
+  final String stars;
   const TodayAppointment(
       {Key? key,
       required this.image,
       required this.name,
+      this.stars = '5',
       required this.connection,
       required this.time})
       : super(key: key);
@@ -61,11 +63,11 @@ class TodayAppointment extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 14.0),
             child: Row(
               children: [
                 Icon(Icons.star, color: mIconColor, size: 20.0),
-                Text('5'),
+                Text(stars),
               ],
             ),
           )

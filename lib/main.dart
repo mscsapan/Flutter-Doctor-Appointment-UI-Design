@@ -1,5 +1,6 @@
-import 'package:doctor_appointment_design/screens/doctor_details_screen.dart';
-import 'package:doctor_appointment_design/screens/top_doctors.dart';
+import 'package:doctor_appointment_design/controller/schedule_button_controller.dart';
+import 'package:doctor_appointment_design/screens/my_appointment_screen.dart';
+import 'package:doctor_appointment_design/screens/search_doctors_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +15,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => SwipePageController()),
-        ChangeNotifierProvider(create: (context) => NavigationController())
+        ChangeNotifierProvider(create: (context) => NavigationController()),
+        ChangeNotifierProvider(create: (context) => ScheduleButtonController()),
       ],
       child: MaterialApp(
-        home: TopDoctorsScreen(),
+        home: MyAppointmentScreen(),
         debugShowCheckedModeBanner: false,
       ),
     );

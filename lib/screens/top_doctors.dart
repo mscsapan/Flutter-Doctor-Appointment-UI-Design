@@ -36,6 +36,7 @@ class TopDoctorsScreen extends StatelessWidget {
                     image: docImages[index],
                     designation: designations[index],
                     college: colleges[index],
+                    stars: stars[index].toString(),
                   )),
               child: Container(
                 height: 300.0,

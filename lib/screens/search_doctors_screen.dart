@@ -1,5 +1,4 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
-import 'package:doctor_appointment_design/model/doctor_model.dart';
 import 'package:doctor_appointment_design/views/listview/doctors_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -38,43 +37,23 @@ class SearchDoctorScreen extends StatelessWidget {
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.search, color: Colors.grey),
-                          hintText: 'Search Doctor',
-                        ),
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.search, color: Colors.grey),
+                            hintText: 'Search Doctor'),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: FaIcon(FontAwesomeIcons.timesCircle,
-                          color: Colors.grey, size: 20.0),
-                    ),
+                        padding: const EdgeInsets.all(10.0),
+                        child: FaIcon(FontAwesomeIcons.timesCircle,
+                            color: Colors.grey, size: 20.0)),
                   ],
                 ),
               ),
               SizedBox(height: 30.0),
-              Text(
-                'Suggestion',
-                style: GoogleFonts.openSans(
-                    fontSize: 20.0, fontWeight: FontWeight.w600),
-              ),
+              Text('Suggestion',
+                  style: GoogleFonts.openSans(
+                      fontSize: 20.0, fontWeight: FontWeight.w600)),
               SizedBox(height: 10.0),
-              Column(
-                children: List.generate(
-                  names.length,
-                  (index) => ExpansionTile(
-                    title: Text(names[index]),
-                    children: List.generate(
-                      names.length,
-                      (index) => SingleChildScrollView(
-                        child: Text(
-                          designations[index],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),

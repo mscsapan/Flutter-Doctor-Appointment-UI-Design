@@ -12,12 +12,14 @@ class DoctorDetailsScreen extends StatelessWidget {
   final String name;
   final String designation;
   final String college;
+  final String stars;
 
   const DoctorDetailsScreen(
       {Key? key,
       required this.image,
       required this.name,
       required this.college,
+      required this.stars,
       required this.designation})
       : super(key: key);
 
@@ -153,6 +155,7 @@ class DoctorDetailsScreen extends StatelessWidget {
                   image: image,
                   connection: designation,
                   time: college,
+                  stars: stars,
                 ),
               ),
               SizedBox(height: 10.0),
@@ -209,7 +212,8 @@ class DoctorDetailsScreen extends StatelessWidget {
                                     style:
                                         GoogleFonts.openSans(fontSize: 18.0)),
                                 SizedBox(width: 10.0),
-                                FaIcon(FontAwesomeIcons.angleUp),
+                                FaIcon(FontAwesomeIcons.angleUp,
+                                    size: 20.0, color: Colors.grey),
                               ],
                             ),
                             SizedBox(height: 10.0),
