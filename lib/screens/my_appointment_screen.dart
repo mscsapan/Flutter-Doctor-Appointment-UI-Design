@@ -1,5 +1,6 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
 import 'package:doctor_appointment_design/controller/schedule_button_controller.dart';
+import 'package:doctor_appointment_design/screens/patient_screen.dart';
 import 'package:doctor_appointment_design/views/customs_views.dart';
 import 'package:doctor_appointment_design/views/listview/doctors_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -53,10 +54,12 @@ class MyAppointmentScreen extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Container(
-          width: 120.0,
+          width: 115.0,
           alignment: Alignment.center,
           padding: EdgeInsets.all(12.0),
           decoration: BoxDecoration(
+              border: Border.all(
+                  color: position == index ? Colors.transparent : Colors.grey),
               borderRadius: BorderRadius.circular(8.0),
               color: position == index ? Colors.green : Colors.grey[200]),
           child: Text(
@@ -180,7 +183,8 @@ class MyAppointmentScreen extends StatelessWidget {
             ),
             SizedBox(height: 20.0),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
               child: Text('Fees Information', style: headingStyle()),
             ),
             Column(
@@ -198,7 +202,10 @@ class MyAppointmentScreen extends StatelessWidget {
               child: SizedBox(
                 height: 50.0,
                 width: MediaQuery.of(context).size.width - 25.0,
-                child: nextButton(onTap: () {}, title: 'Continue'),
+                child: nextButton(
+                    onTap: () =>
+                        goToNext(context: context, screen: PatientScreen()),
+                    title: 'Continue'),
               ),
             ),
           ],

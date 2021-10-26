@@ -74,12 +74,12 @@ class ResetPassword extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.90,
                     height: 45.0,
                     child: ElevatedButton(
+                      onPressed: () =>
+                          goToNext(context: context, screen: HomeScreen()),
                       style: ElevatedButton.styleFrom(
                           primary: mDoctorTextColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0))),
-                      onPressed: () =>
-                          goToNext(context: context, screen: HomeScreen()),
                       child: Text(
                         'Verify and Proceed',
                         style: GoogleFonts.roboto(

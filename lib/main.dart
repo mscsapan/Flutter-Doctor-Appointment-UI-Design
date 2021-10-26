@@ -1,6 +1,5 @@
 import 'package:doctor_appointment_design/controller/schedule_button_controller.dart';
 import 'package:doctor_appointment_design/screens/my_appointment_screen.dart';
-import 'package:doctor_appointment_design/screens/search_doctors_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

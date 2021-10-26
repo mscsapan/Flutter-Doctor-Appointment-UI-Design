@@ -4,6 +4,7 @@ class ScheduleButtonController extends ChangeNotifier {
   int current = 0;
   int current2 = 0;
   int current3 = 0;
+  int current4 = 0;
 
   void setActivity(int index) {
     current = index;
@@ -17,6 +18,11 @@ class ScheduleButtonController extends ChangeNotifier {
 
   void setActivity3(int index) {
     current3 = index;
+    notifyListeners();
+  }
+
+  void setActivity4(int index) {
+    current4 = index;
     notifyListeners();
   }
 }
