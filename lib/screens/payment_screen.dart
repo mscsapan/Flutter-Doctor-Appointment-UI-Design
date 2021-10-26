@@ -1,7 +1,11 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
+import 'package:doctor_appointment_design/screens/review_doctor_screen.dart';
+import 'package:doctor_appointment_design/views/customs_views.dart';
 import 'package:doctor_appointment_design/views/notifications_bell.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PaymentScreen extends StatelessWidget {
@@ -9,7 +13,28 @@ class PaymentScreen extends StatelessWidget {
 
   TextStyle bankName() => GoogleFonts.roboto(
       letterSpacing: 1.0, fontSize: 14.0, color: mWhiteColor);
-
+  final String condition = 'By adding credit/debit card you\'re accept';
+  final String condition2 = 'Terms & Conditions';
+  Widget inputField(String input) => TextField(
+        enabled: false,
+        decoration: InputDecoration(
+          //contentPadding: EdgeInsets.all(6.0).copyWith(bottom: 10.0),
+          //isDense: true,
+          //isCollapsed: true,
+          border:
+              UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          focusedBorder:
+              UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+          hintText: input,
+        ),
+      );
+  Widget iconAndName(String name, IconData icon) => Row(
+        children: [
+          FaIcon(icon, size: 20.0, color: Colors.grey),
+          SizedBox(width: 5.0),
+          Text(name, style: GoogleFonts.openSans(fontSize: 20.0)),
+        ],
+      );
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -134,19 +159,72 @@ class PaymentScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: mWhiteColor)),
                           SizedBox(height: 3.0),
-                          Text('28/25',
-                              style: GoogleFonts.raleway(
-                                  fontSize: 14.0,
-                                  letterSpacing: 1.2,
-                                  fontWeight: FontWeight.w600,
-                                  color: mWhiteColor)),
+                          Text(
+                            '28/25',
+                            style: GoogleFonts.raleway(
+                                fontSize: 14.0,
+                                letterSpacing: 1.2,
+                                fontWeight: FontWeight.w600,
+                                color: mWhiteColor),
+                          ),
                         ],
                       ),
                     ],
                   ),
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 5.0),
+            Text(condition, style: TextStyle(color: Colors.grey)),
+            SizedBox(height: 2.0),
+            Text(condition2,
+                style: TextStyle(
+                    color: mDoctorTextColor,
+                    decoration: TextDecoration.underline)),
+            iconAndName('Name', FontAwesomeIcons.user),
+            inputField('Card holder full name'),
+            SizedBox(height: 10.0),
+            iconAndName('Card Number', FontAwesomeIcons.creditCard),
+            inputField('Card number'),
+            SizedBox(height: 10.0),
+            SizedBox(
+              width: double.infinity,
+              height: 70.0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        iconAndName('Expire Date', FontAwesomeIcons.table),
+                        Expanded(
+                          child: inputField('DD-MM-YYYY'),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 15.0),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        iconAndName('CVV', FontAwesomeIcons.creditCard),
+                        Expanded(
+                          child: inputField('Enter CVV number'),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 40.0),
+            SizedBox(
+                width: double.infinity,
+                height: 50.0,
+                child: nextButton(
+                    onTap: () => goToNext(
+                        context: context, screen: ReviewDoctorScreen()),
+                    title: 'Payment Now'))
           ],
         ),
       ),
