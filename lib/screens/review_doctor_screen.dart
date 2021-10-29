@@ -14,6 +14,110 @@ class ReviewDoctorScreen extends StatelessWidget {
     FontAwesomeIcons.video,
     FontAwesomeIcons.solidClock,
   ];
+  nameStyle() => GoogleFonts.raleway(
+      fontSize: 14.0, color: mCheckIconColor, letterSpacing: 1.2);
+  nameHeadingStyle() =>
+      GoogleFonts.raleway(fontSize: 14.0, color: mCheckIconColor);
+  infoStyle() => GoogleFonts.roboto(fontSize: 14.0, letterSpacing: 0.6);
+  infoStyle2() =>
+      GoogleFonts.playfairDisplay(fontSize: 15.0, letterSpacing: 0.6);
+  Widget visitingInformation() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Container(
+        height: 80.0,
+        width: double.infinity,
+        //color: Colors.red,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                FaIcon(FontAwesomeIcons.clock, size: 18.0, color: Colors.grey),
+                SizedBox(width: 8.0),
+                Text('Visiting Time',
+                    style: GoogleFonts.openSans(
+                        fontSize: 16.0, color: Colors.grey, letterSpacing: 1.2))
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Morning', style: infoStyle()),
+                  Text('Today 09, January 2020', style: infoStyle()),
+                  Text('11.00am - 12.30pm',
+                      style: infoStyle2().copyWith(color: Colors.blueGrey)),
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget patientInformation() => Container(
+        height: 80,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Row(
+                  children: [
+                    FaIcon(FontAwesomeIcons.infoCircle,
+                        size: 18.0, color: Colors.grey),
+                    SizedBox(width: 8.0),
+                    Text('Patient Information',
+                        style: GoogleFonts.openSans(
+                            fontSize: 18.0,
+                            color: Colors.grey,
+                            letterSpacing: 1.2))
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 5.0),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0, right: 10.0),
+                  child: SizedBox(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Name', style: nameHeadingStyle()),
+                        Text('Age', style: nameHeadingStyle()),
+                        Text('Phone', style: nameHeadingStyle()),
+                      ],
+                    ),
+                  ),
+                ),
+                Column(
+                    children: List.generate(
+                        3,
+                        (index) => Text(' : ',
+                            style: TextStyle(fontWeight: FontWeight.bold)))),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: SizedBox(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Mohammad Sapan', style: nameStyle()),
+                        Text('24', style: nameStyle()),
+                        Text('+8801624188877', style: nameStyle()),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      );
 
   Widget buildConversationWay(int index, Function() onTap, int position) {
     return GestureDetector(
@@ -157,7 +261,9 @@ class ReviewDoctorScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          //Spacer(),
+                          visitingInformation(),
+                          patientInformation(),
+                          Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -201,7 +307,8 @@ class ReviewDoctorScreen extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          )
+                          ),
+                          SizedBox(height: 20.0),
                         ],
                       ),
                     ),
