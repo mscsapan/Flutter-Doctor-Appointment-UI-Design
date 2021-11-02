@@ -1,6 +1,10 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
 import 'package:doctor_appointment_design/controller/schedule_button_controller.dart';
 import 'package:doctor_appointment_design/model/doctor_model.dart';
+import 'package:doctor_appointment_design/screens/conversation/audio_call_screen.dart';
+import 'package:doctor_appointment_design/screens/conversation/messaging_screen.dart';
+import 'package:doctor_appointment_design/screens/conversation/video_call_screen.dart';
+import 'package:doctor_appointment_design/screens/conversation/my_appointment_screen.dart';
 import 'package:doctor_appointment_design/views/customs_views.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,24 +12,52 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ReviewDoctorScreen extends StatelessWidget {
+/*  final String image;
+  final String name;
+  final String designation;
+  final String college;
+  final String stars;
+
+  ReviewDoctorScreen(
+      {Key? key,
+      required this.image,
+      required this.name,
+      required this.college,
+      required this.stars,
+      required this.designation})
+      : super(key: key);*/
+
   final List<IconData> icons = [
     FontAwesomeIcons.phoneAlt,
     FontAwesomeIcons.commentDots,
     FontAwesomeIcons.video,
     FontAwesomeIcons.solidClock,
   ];
+  final List<String> connection = [
+    'Audio Call Doctor',
+    'Live Chat With Doctor',
+    'Video Call Doctor',
+    'Set New Schedule'
+  ];
+
+  final List<Widget> conversationsScreen = [
+    AudioCallScreen(),
+    MessagingScreen(),
+    VideoCallScreen(),
+    MyAppointmentScreen(),
+  ];
+
   nameStyle() => GoogleFonts.raleway(
       fontSize: 14.0, color: mCheckIconColor, letterSpacing: 1.2);
-  nameHeadingStyle() =>
-      GoogleFonts.raleway(fontSize: 14.0, color: mCheckIconColor);
-  infoStyle() => GoogleFonts.roboto(fontSize: 14.0, letterSpacing: 0.6);
+  nameHeadingStyle() => GoogleFonts.raleway(fontSize: 14.0);
+  infoStyle() => GoogleFonts.roboto(fontSize: 15.0, letterSpacing: 0.6);
   infoStyle2() =>
       GoogleFonts.playfairDisplay(fontSize: 15.0, letterSpacing: 0.6);
   Widget visitingInformation() {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Container(
-        height: 80.0,
+        height: 90.0,
         width: double.infinity,
         //color: Colors.red,
         child: Column(
@@ -37,7 +69,7 @@ class ReviewDoctorScreen extends StatelessWidget {
                 SizedBox(width: 8.0),
                 Text('Visiting Time',
                     style: GoogleFonts.openSans(
-                        fontSize: 16.0, color: Colors.grey, letterSpacing: 1.2))
+                        fontSize: 18.0, letterSpacing: 1.2))
               ],
             ),
             Padding(
@@ -119,6 +151,32 @@ class ReviewDoctorScreen extends StatelessWidget {
         ),
       );
 
+  Widget buildTitleChange(BuildContext context, int index, int position) =>
+      SizedBox(
+        height: 45.0,
+        width: MediaQuery.of(context).size.width * 0.7,
+        child: nextButton(
+          onTap: () => goToNext(
+              context: context,
+              screen: position == 0
+                  ? conversationsScreen[0]
+                  : position == 1
+                      ? conversationsScreen[1]
+                      : position == 2
+                          ? conversationsScreen[2]
+                          : conversationsScreen[3]),
+          title: position == 0
+              ? connection[0]
+              : position == 1
+                  ? connection[1]
+                  : position == 2
+                      ? connection[2]
+                      : position == 3
+                          ? connection[3]
+                          : 'Book Appointment',
+        ),
+      );
+
   Widget buildConversationWay(int index, Function() onTap, int position) {
     return GestureDetector(
       onTap: onTap,
@@ -135,6 +193,50 @@ class ReviewDoctorScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget feesInformation() => Container(
+        height: 70,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Row(
+                  children: [
+                    FaIcon(FontAwesomeIcons.dollarSign,
+                        size: 18.0, color: Colors.grey),
+                    SizedBox(width: 8.0),
+                    Text('Fees Information',
+                        style: GoogleFonts.openSans(
+                            fontSize: 18.0, letterSpacing: 1.2))
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 5.0),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 25.0, right: 10.0),
+                  child: SizedBox(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Paid',
+                            style: nameHeadingStyle()
+                                .copyWith(color: Colors.green)),
+                        SizedBox(height: 2),
+                        Text('\$6', style: nameHeadingStyle()),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      );
+  final double imageSize = 115.0;
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +257,7 @@ class ReviewDoctorScreen extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: height * 0.16,
+              height: height * 0.17,
               width: double.infinity,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -166,18 +268,18 @@ class ReviewDoctorScreen extends StatelessWidget {
                       Row(
                         children: [
                           SizedBox(
-                            height: 120.0,
-                            width: 120.0,
+                            height: imageSize,
+                            width: imageSize,
                             child: Padding(
                               padding: const EdgeInsets.all(16.0),
                               child: CircleAvatar(
-                                maxRadius: 120.0,
+                                maxRadius: imageSize,
                                 child: ClipOval(
                                   child: Image.network(
-                                    docImages[1],
+                                    docImages[0],
                                     fit: BoxFit.fill,
-                                    height: 120.0,
-                                    width: 120.0,
+                                    height: imageSize,
+                                    width: imageSize,
                                   ),
                                 ),
                               ),
@@ -188,15 +290,15 @@ class ReviewDoctorScreen extends StatelessWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(names[1],
+                                Text(names[0],
                                     style: GoogleFonts.raleway(
                                         letterSpacing: 1.4,
                                         fontSize: 18.0,
                                         color: Colors.black)),
-                                Text(designations[1],
+                                Text(designations[0],
                                     style: GoogleFonts.roboto(
                                         fontSize: 15.0, letterSpacing: 0.8)),
-                                Text(colleges[1],
+                                Text(colleges[0],
                                     style: GoogleFonts.roboto(
                                         fontSize: 14.0, letterSpacing: 0.8)),
                               ],
@@ -210,7 +312,7 @@ class ReviewDoctorScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             Icon(Icons.star, color: mIconColor, size: 18.0),
-                            Text(stars[4].toString()),
+                            Text(stars[0].toString()),
                           ],
                         ),
                       ),
@@ -261,8 +363,12 @@ class ReviewDoctorScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          SizedBox(height: 10.0),
                           visitingInformation(),
+                          SizedBox(height: 20.0),
                           patientInformation(),
+                          SizedBox(height: 15.0),
+                          feesInformation(),
                           Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -280,9 +386,7 @@ class ReviewDoctorScreen extends StatelessWidget {
                                       shape: BoxShape.circle,
                                       color: controller.active == true
                                           ? Colors.red
-                                          : Color(
-                                              0xFFE0E0E0,
-                                            ),
+                                          : Color(0xFFE0E0E0),
                                     ),
                                     child: FaIcon(
                                       controller.active == true
@@ -296,14 +400,17 @@ class ReviewDoctorScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 45.0,
-                                width: MediaQuery.of(context).size.width * 0.7,
-                                child: Consumer<ScheduleButtonController>(
-                                  builder: (context, controller, child) =>
-                                      nextButton(
-                                          onTap: () {},
-                                          title: 'Book Appointment'),
+                              Row(
+                                children: List.generate(
+                                  1,
+                                  (index) => Consumer<ScheduleButtonController>(
+                                    builder: (context, controller, child) =>
+                                        buildTitleChange(
+                                      context,
+                                      index,
+                                      controller.position,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],

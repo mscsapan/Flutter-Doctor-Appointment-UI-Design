@@ -7,6 +7,8 @@ class ScheduleButtonController extends ChangeNotifier {
   int current4 = 0;
   bool active = false;
   int position = 0;
+  int second = 0;
+  int minute = 0;
 
   void setActivity(int index) {
     current = index;
@@ -35,6 +37,16 @@ class ScheduleButtonController extends ChangeNotifier {
 
   void getConnected(int index) {
     position = index;
+    notifyListeners();
+  }
+
+  void countMinutes() {
+    second++;
+    if (second == 59) {
+      minute++;
+      second = 0;
+      notifyListeners();
+    }
     notifyListeners();
   }
 }

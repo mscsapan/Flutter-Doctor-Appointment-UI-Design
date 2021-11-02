@@ -28,3 +28,9 @@ PreferredSizeWidget appBarView() => AppBar(
         ],
       ),
     );
+
+PreferredSizeWidget conversationAppBar({Color color = mLightGrey}) => AppBar(
+      backgroundColor: color,
+      elevation: 0.0,
+      iconTheme: IconThemeData(color: Colors.black),
+    );

@@ -1,4 +1,5 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
+import 'package:doctor_appointment_design/screens/review_doctor_screen.dart';
 import 'package:doctor_appointment_design/views/appointment_view.dart';
 import 'package:doctor_appointment_design/views/customs_views.dart';
 import 'package:flutter/material.dart';
@@ -242,7 +243,16 @@ class DoctorDetailsScreen extends StatelessWidget {
                                   width:
                                       MediaQuery.of(context).size.width * 0.7,
                                   child: nextButton(
-                                      onTap: () {}, title: 'Book Appointment'),
+                                      onTap: () => goToNext(
+                                          context: context,
+                                          screen: ReviewDoctorScreen(
+                                              /*  name: name,
+                                            image: image,
+                                            designation: designation,
+                                            college: college,
+                                            stars: stars,*/
+                                              )),
+                                      title: 'Book Appointment'),
                                 ),
                               ],
                             )
