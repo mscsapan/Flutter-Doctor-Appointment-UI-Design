@@ -1,4 +1,5 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
+import 'package:doctor_appointment_design/screens/home_screen.dart';
 import 'package:doctor_appointment_design/screens/sign_up_screen.dart';
 import 'package:doctor_appointment_design/views/already_account.dart';
 import 'package:doctor_appointment_design/views/customs_views.dart';
@@ -66,7 +67,10 @@ class SignInScreen extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.90,
                     height: 45.0,
-                    child: nextButton(onTap: () {}, title: 'Sign In'),
+                    child: nextButton(
+                        onTap: () =>
+                            goToNext(context: context, screen: HomeScreen()),
+                        title: 'Sign In'),
                   ),
                   SizedBox(height: 10.0),
                   HorizontalLine(),

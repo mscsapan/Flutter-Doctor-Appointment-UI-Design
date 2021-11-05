@@ -8,15 +8,27 @@ import 'package:provider/provider.dart';
 
 import '../views/all_list_items.dart';
 
-class OnBoardingScreen extends StatelessWidget {
-  OnBoardingScreen({Key? key}) : super(key: key);
+class OnBoardingScreen extends StatefulWidget {
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final PageController pageController = PageController();
 
   @override
+  void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive, overlays: []);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    SwipePageController swipe =
-        Provider.of<SwipePageController>(context, listen: true);
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return Scaffold(
       body: Center(
         child: Column(

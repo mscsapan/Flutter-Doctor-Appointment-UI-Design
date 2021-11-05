@@ -221,7 +221,10 @@ class PaymentScreen extends StatelessWidget {
             SizedBox(
                 width: double.infinity,
                 height: 50.0,
-                child: nextButton(onTap: () {}, title: 'Payment Now'))
+                child: nextButton(
+                    onTap: () => goToNext(
+                        context: context, screen: ReviewDoctorScreen()),
+                    title: 'Payment Now'))
           ],
         ),
       ),

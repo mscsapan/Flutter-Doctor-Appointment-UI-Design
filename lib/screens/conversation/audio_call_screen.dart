@@ -1,15 +1,25 @@
+import 'dart:async';
+
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
+import 'package:doctor_appointment_design/controller/schedule_button_controller.dart';
 import 'package:doctor_appointment_design/model/doctor_model.dart';
 import 'package:doctor_appointment_design/views/listview/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class AudioCallScreen extends StatelessWidget {
-  AudioCallScreen({Key? key}) : super(key: key);
+class AudioCallScreen extends StatefulWidget {
+  @override
+  State<AudioCallScreen> createState() => _AudioCallScreenState();
+}
+
+class _AudioCallScreenState extends State<AudioCallScreen> {
   final double conSize = 100.0;
+
   final double conSize2 = 95.0;
+  final String call = 'Outgoing Call...';
   final List<IconData> icons = [
     FontAwesomeIcons.microphoneSlash,
     FontAwesomeIcons.phoneAlt,
@@ -29,6 +39,17 @@ class AudioCallScreen extends StatelessWidget {
         ),
         child: FaIcon(icons[index], size: 32.0, color: mWhiteColor),
       );
+
+  //final DurationController duration = Get.put(DurationController());
+  @override
+  void initState() {
+    final durationController =
+        Provider.of<ScheduleButtonController>(context, listen: false);
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      durationController.updateDuration();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +74,11 @@ class AudioCallScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Outgoing Call...',
-                      style: GoogleFonts.raleway(
-                          fontSize: 16.0, letterSpacing: 1.5)),
+                  Text(
+                    call,
+                    style:
+                        GoogleFonts.raleway(fontSize: 16.0, letterSpacing: 1.5),
+                  ),
                   SizedBox(height: 6.0),
                   Container(
                     height: conSize,
@@ -91,17 +114,32 @@ class AudioCallScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     //crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('10',
-                          style: GoogleFonts.raleway(
-                              fontSize: 20.0, letterSpacing: 1.0)),
+                      Consumer<ScheduleButtonController>(
+                        builder: (context, duration, child) => Text(
+                            duration.hour.toString(),
+                            style: GoogleFonts.raleway(
+                                fontSize: 20.0, letterSpacing: 1.0)),
+                      ),
                       Text(':',
                           style: GoogleFonts.raleway(
                               fontSize: 20.0, letterSpacing: 1.0)),
-                      Text('38',
+                      Consumer<ScheduleButtonController>(
+                        builder: (context, duration, child) => Text(
+                            duration.minute.toString(),
+                            style: GoogleFonts.raleway(
+                                fontSize: 20.0, letterSpacing: 1.0)),
+                      ),
+                      Text(':',
                           style: GoogleFonts.raleway(
                               fontSize: 20.0, letterSpacing: 1.0)),
+                      Consumer<ScheduleButtonController>(
+                        builder: (context, duration, child) => Text(
+                            duration.second.toString(),
+                            style: GoogleFonts.raleway(
+                                fontSize: 20.0, letterSpacing: 1.0)),
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

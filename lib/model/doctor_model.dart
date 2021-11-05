@@ -38,7 +38,7 @@ final List<String> names = [
   'Dr. Tanisha Khan',
   'Dr. Iva Kerpenter',
   'Dr. Mayme Gomez',
-  'Virginia Apgar',
+  'Virginia Asgar',
   'Dr. Jack Wolf',
   'Dr. Daniel',
 ];

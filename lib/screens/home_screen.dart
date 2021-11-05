@@ -5,7 +5,6 @@ import 'package:doctor_appointment_design/views/listview/category_view.dart';
 import 'package:doctor_appointment_design/views/listview/heading_view.dart';
 import 'package:doctor_appointment_design/views/listview/top_doctor_view.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
@@ -114,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      //bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

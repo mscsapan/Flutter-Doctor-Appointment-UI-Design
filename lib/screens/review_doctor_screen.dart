@@ -49,10 +49,14 @@ class ReviewDoctorScreen extends StatelessWidget {
 
   nameStyle() => GoogleFonts.raleway(
       fontSize: 14.0, color: mCheckIconColor, letterSpacing: 1.2);
+
   nameHeadingStyle() => GoogleFonts.raleway(fontSize: 14.0);
+
   infoStyle() => GoogleFonts.roboto(fontSize: 15.0, letterSpacing: 0.6);
+
   infoStyle2() =>
       GoogleFonts.playfairDisplay(fontSize: 15.0, letterSpacing: 0.6);
+
   Widget visitingInformation() {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
@@ -265,57 +269,50 @@ class ReviewDoctorScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: imageSize,
-                            width: imageSize,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: CircleAvatar(
-                                maxRadius: imageSize,
-                                child: ClipOval(
-                                  child: Image.network(
-                                    docImages[0],
-                                    fit: BoxFit.fill,
-                                    height: imageSize,
-                                    width: imageSize,
-                                  ),
+                      Row(children: [
+                        SizedBox(
+                          height: imageSize,
+                          width: imageSize,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: CircleAvatar(
+                              maxRadius: imageSize,
+                              child: ClipOval(
+                                child: Image.network(
+                                  docImages[0],
+                                  fit: BoxFit.fill,
+                                  height: imageSize,
+                                  width: imageSize,
                                 ),
                               ),
                             ),
                           ),
-                          Padding(
+                        ),
+                        Padding(
                             padding: const EdgeInsets.symmetric(vertical: 30.0),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(names[0],
-                                    style: GoogleFonts.raleway(
-                                        letterSpacing: 1.4,
-                                        fontSize: 18.0,
-                                        color: Colors.black)),
-                                Text(designations[0],
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 15.0, letterSpacing: 0.8)),
-                                Text(colleges[0],
-                                    style: GoogleFonts.roboto(
-                                        fontSize: 14.0, letterSpacing: 0.8)),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(names[0],
+                                      style: GoogleFonts.raleway(
+                                          letterSpacing: 1.4,
+                                          fontSize: 18.0,
+                                          color: Colors.black)),
+                                  Text(designations[0],
+                                      style: GoogleFonts.roboto(
+                                          fontSize: 15.0, letterSpacing: 0.8)),
+                                  Text(colleges[0],
+                                      style: GoogleFonts.roboto(
+                                          fontSize: 14.0, letterSpacing: 0.8))
+                                ]))
+                      ]),
                       Padding(
-                        padding:
-                            const EdgeInsets.all(0.0).copyWith(right: 10.0),
-                        child: Row(
-                          children: [
+                          padding:
+                              const EdgeInsets.all(0.0).copyWith(right: 10.0),
+                          child: Row(children: [
                             Icon(Icons.star, color: mIconColor, size: 18.0),
-                            Text(stars[0].toString()),
-                          ],
-                        ),
-                      ),
+                            Text(stars[0].toString())
+                          ]))
                     ],
                   ),
                 ),

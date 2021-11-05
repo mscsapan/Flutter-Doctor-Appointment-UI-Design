@@ -5,6 +5,7 @@ class AlreadyAccount extends StatelessWidget {
   final String message;
   final String method;
   final Function() onTap;
+
   AlreadyAccount(
       {Key? key,
       required this.message,

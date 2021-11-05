@@ -12,14 +12,13 @@ doctorTextStyle() => TextStyle(
 
 Widget buildDot({required int index, required int current}) {
   return AnimatedContainer(
-    duration: Duration(milliseconds: 700),
-    height: index == current ? 12 : 10.0,
-    width: index == current ? 12 : 10.0,
-    margin: EdgeInsets.only(right: 5.0),
-    decoration: BoxDecoration(
-        color: index == current ? mDoctorTextColor : Colors.grey,
-        shape: BoxShape.circle),
-  );
+      duration: Duration(milliseconds: 700),
+      height: index == current ? 12 : 10.0,
+      width: index == current ? 12 : 10.0,
+      margin: EdgeInsets.only(right: 5.0),
+      decoration: BoxDecoration(
+          color: index == current ? mDoctorTextColor : Colors.grey,
+          shape: BoxShape.circle));
 }
 
 Widget nextButton({required Function() onTap, required String title}) {

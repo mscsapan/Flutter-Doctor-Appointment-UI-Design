@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
+import 'package:doctor_appointment_design/controller/schedule_button_controller.dart';
 import 'package:doctor_appointment_design/model/doctor_model.dart';
 import 'package:doctor_appointment_design/screens/review_doctor_screen.dart';
 import 'package:doctor_appointment_design/views/customs_views.dart';
@@ -6,9 +9,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
-class VideoCallScreen extends StatelessWidget {
-  VideoCallScreen({Key? key}) : super(key: key);
+class VideoCallScreen extends StatefulWidget {
+  @override
+  State<VideoCallScreen> createState() => _VideoCallScreenState();
+}
+
+class _VideoCallScreenState extends State<VideoCallScreen> {
   final List<IconData> icons = [
     FontAwesomeIcons.microphoneSlash,
     FontAwesomeIcons.phoneAlt,
@@ -16,6 +24,7 @@ class VideoCallScreen extends StatelessWidget {
     FontAwesomeIcons.video,
     //FontAwesomeIcons.solidClock,
   ];
+
   Widget buildConversation(int index) => Container(
         height: 70.0,
         width: 70.0,
@@ -33,6 +42,20 @@ class VideoCallScreen extends StatelessWidget {
       letterSpacing: 1.0,
       color: Colors.white,
       fontWeight: FontWeight.bold);
+
+  TextStyle durationStyle() {
+    return GoogleFonts.raleway(fontSize: 20.0, letterSpacing: 1.0);
+  }
+
+  @override
+  void initState() {
+    final durationController =
+        Provider.of<ScheduleButtonController>(context, listen: false);
+    Timer.periodic(Duration(seconds: 1), (timer) {
+      durationController.updateDuration();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +86,7 @@ class VideoCallScreen extends StatelessWidget {
                   ),
                   Positioned(
                     right: 10.0,
-                    top: height * 0.7 / 2.5,
+                    top: height * 0.7 / 3.0,
                     child: Container(
                       height: 150.0,
                       width: 140.0,
@@ -93,9 +116,20 @@ class VideoCallScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('10', style: nameStyle()),
-                Text(':', style: nameStyle()),
-                Text('38', style: nameStyle()),
+                Consumer<ScheduleButtonController>(
+                  builder: (context, duration, child) =>
+                      Text(duration.hour.toString(), style: durationStyle()),
+                ),
+                Text(':', style: durationStyle()),
+                Consumer<ScheduleButtonController>(
+                  builder: (context, duration, child) =>
+                      Text(duration.minute.toString(), style: durationStyle()),
+                ),
+                Text(':', style: durationStyle()),
+                Consumer<ScheduleButtonController>(
+                  builder: (context, duration, child) =>
+                      Text(duration.second.toString(), style: durationStyle()),
+                ),
               ],
             ),
             Spacer(),

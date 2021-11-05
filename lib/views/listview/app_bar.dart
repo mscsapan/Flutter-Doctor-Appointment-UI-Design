@@ -27,6 +27,7 @@ PreferredSizeWidget appBarView() => AppBar(
           FaIcon(FontAwesomeIcons.mapMarkerAlt)
         ],
       ),
+      automaticallyImplyLeading: false,
     );
 
 PreferredSizeWidget conversationAppBar({Color color = mLightGrey}) => AppBar(

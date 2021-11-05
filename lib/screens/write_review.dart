@@ -1,36 +1,33 @@
 import 'package:doctor_appointment_design/app_colors/app_colors.dart';
-import 'package:doctor_appointment_design/controller/review_controller.dart';
+import 'package:doctor_appointment_design/controller/schedule_button_controller.dart';
 import 'package:doctor_appointment_design/model/doctor_model.dart';
 import 'package:doctor_appointment_design/views/customs_views.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class WriteReviewScreen extends StatelessWidget {
   final double conSize = 100.0;
   final double conSize2 = 95.0;
   final String experience = 'How was the experience with';
 
-  Widget recommends() => Container(
-        margin: EdgeInsets.only(right: 15.0),
+  Widget recommends(int index, int position) => Container(
+        margin: EdgeInsets.only(right: 20.0),
         child: Row(
           children: [
             FaIcon(FontAwesomeIcons.checkCircle,
-                color: Colors.green, size: 16.0),
-            SizedBox(width: 4.0),
-            Text('Yes')
+                color: position == index ? Colors.green : Colors.grey,
+                size: 16.0),
+            SizedBox(width: 8.0),
+            Text(index == 0 ? 'Yes' : 'No')
           ],
         ),
       );
 
-  final ReviewController review = Get.put(ReviewController());
   Widget reviewStar(int index) {
-    return GestureDetector(
-      onTap: () => review.review(),
-      child: Icon(Icons.star,
-          color: review.isPressed.value == index ? Colors.grey : mIconColor,
-          size: 26.0),
-    );
+    return Icon(Icons.star,
+        color: index == 4 ? Colors.grey : mIconColor, size: 26.0);
   }
 
   @override
@@ -41,7 +38,7 @@ class WriteReviewScreen extends StatelessWidget {
       backgroundColor: mLightGrey,
       appBar: AppBar(
         backgroundColor: mDoctorTextColor,
-        title: Text('Write Review'),
+        title: Text('Write Review', style: GoogleFonts.raleway()),
         centerTitle: true,
         elevation: 0.0,
       ),
@@ -76,24 +73,31 @@ class WriteReviewScreen extends StatelessWidget {
               children: List.generate(5, (index) => reviewStar(index)),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5.0),
-              child: ListTile(
-                title: Text('Write Your Comment'),
-                trailing: Text('Max 600 Words'),
-              ),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: 0.0),
+                child: ListTile(
+                  //contentPadding: EdgeInsets.all(0.0),
+                  title: Text('Write Your Comment'),
+                  trailing: Text('Max 600 Words'),
+                )
+                /*Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Write Your Comment'),
+                  Text('Max 600 words'),
+                ],
+              ),*/
+                ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0)
-                  .copyWith(top: 0.0),
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
               child: TextField(
-                enabled: true,
+                enabled: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: mCheckIconColor)),
+                      borderSide: BorderSide(color: mWhiteColor)),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide(color: mCheckIconColor)),
+                      borderSide: BorderSide(color: mWhiteColor)),
                 ),
                 maxLength: 600,
                 maxLines: 5,
@@ -102,15 +106,27 @@ class WriteReviewScreen extends StatelessWidget {
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                    'Would You Recommends ${names[1]} \nto Your Friends?')),
-            Row(children: List.generate(2, (index) => recommends())),
+                  'Would You Recommends ${names[1]} \nto Your Friends?',
+                  style: GoogleFonts.raleway(fontSize: 18.0),
+                )),
+            SizedBox(height: 10.0),
+            Row(
+              children: List.generate(
+                2,
+                (index) => Consumer<ScheduleButtonController>(
+                  builder: (context, choice, child) => GestureDetector(
+                      onTap: () => choice.chooseOption(index),
+                      child: recommends(index, choice.option)),
+                ),
+              ),
+            ),
             Spacer(),
             SizedBox(
               height: 50.0,
               width: MediaQuery.of(context).size.width - 0.2,
               child: nextButton(onTap: () {}, title: 'Review'),
             ),
-            SizedBox(height: 80.0),
+            SizedBox(height: 70.0),
           ],
         ),
       ),
